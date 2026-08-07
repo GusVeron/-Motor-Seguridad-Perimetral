@@ -7,11 +7,14 @@ public class PaqueteRed {
     private final String ipOrigen;
     private final String ipDestino;
     private final Integer puerto;
+    private String estado;
+
 
     public PaqueteRed(String ipOrigen, String ipDestino, Integer unPuerto) {
         this.ipOrigen = ipOrigen;
         this.ipDestino = ipDestino;
         this.puerto = validarPuerto(unPuerto);
+        this.estado = "Pendiente";
     }
 
 
@@ -35,4 +38,15 @@ public class PaqueteRed {
         return puerto;
     }
 
+    public String estado() {
+        return estado;
+    }
+
+    public void marcarComoAmenaza() {
+        this.estado = "Amenaza";
+    }
+
+    public void marcarComoSeguro() {
+        this.estado = "Tráfico Seguro";
+    }
 }

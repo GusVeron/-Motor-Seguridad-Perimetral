@@ -5,19 +5,23 @@ import java.util.List;
 
 import ar.edu.unahur.obj2.motor.PaqueteRed;
 import ar.edu.unahur.obj2.motor.excepciones.ViolacionSegmentacionException;
+import ar.edu.unahur.obj2.motor.observer.CentroNotificaciones;
 import ar.edu.unahur.obj2.motor.politicas.IPoliticaFiltrado;
 
 public abstract class MotorInspeccion {
 
     private final IPoliticaFiltrado politica;
     private final List<String> historialIngresos = new ArrayList<>();
+    private final CentroNotificaciones centroNotificaciones;
 
-    public MotorInspeccion(IPoliticaFiltrado politica) {
-        this.politica = politica;
+    public MotorInspeccion(IPoliticaFiltrado unaPolitica, CentroNotificaciones unCentroNotificaciones) {
+        this.politica = unaPolitica;
+        this.centroNotificaciones = unCentroNotificaciones;
     }
 
     public final void inspeccionar(PaqueteRed paquete)
-            throws ViolacionSegmentacionException {
+    
+        throws ViolacionSegmentacionException {
 
         validarSegmentacion(paquete);
 
@@ -50,13 +54,14 @@ public abstract class MotorInspeccion {
     }
 
     private void marcarAmenaza(PaqueteRed paquete) {
-        // marcar como amenaza
+        paquete.marcarComoAmenaza();
+        centroNotificaciones.notificar(paquete);
     }
 
     protected abstract void inspeccionProfunda(PaqueteRed paquete);
 
     private void aprobar(PaqueteRed paquete) {
-        // marcar como tráfico seguro
+        paquete.marcarComoSeguro();
     }
 
     public List<String> historialIngresos() {
