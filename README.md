@@ -4,9 +4,9 @@ Un centro de datos requiere un nuevo motor de filtrado e inspección para su inf
 
 #### **⚙️ Datos necesarios y obligatorios a completar.**
 
-* **APELLIDO, NOMBRE**:  
-* **COMISIÓN**:  
-* **DNI**:
+* **APELLIDO, NOMBRE**: Veron Gustavo  
+* **COMISIÓN**:  3
+* **DNI**: 36900959
 
 #### **📝 Consideraciones Iniciales y Criterio de Evaluación.**
 
